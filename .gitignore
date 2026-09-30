@@ -11,6 +11,7 @@ docs/*.blg
 docs/*.nav
 docs/*.snm
 docs/*.vrb
+.venv/
 
 # LTspice backups
 *.bak

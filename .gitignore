@@ -1,0 +1,21 @@
+# LaTeX build artifacts (scoped to docs/ so the LTspice .log in simulation/ stays tracked)
+docs/*.aux
+docs/*.log
+docs/*.out
+docs/*.toc
+docs/*.synctex.gz
+docs/*.fls
+docs/*.fdb_latexmk
+docs/*.bbl
+docs/*.blg
+docs/*.nav
+docs/*.snm
+docs/*.vrb
+
+# LTspice backups
+*.bak
+*~
+
+# OS
+.DS_Store
+Thumbs.db

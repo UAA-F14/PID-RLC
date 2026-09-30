@@ -298,7 +298,7 @@ frequency responses were computed numerically (\texttt{simulation/bode\_plot.py}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{figures/bode_plot.png}
+\includegraphics[width=0.95\textwidth]{src/bode_plot.png}
 \caption{Open-loop $L(s)$ magnitude/phase (left) and closed-loop $T(s)$ magnitude/phase (right), computed
 from the actual plant and controller transfer functions.}
 \label{fig:bode}
@@ -345,29 +345,79 @@ those two positions changes between branches:
 
 \begin{enumerate}[nosep]
     \item \textbf{Difference amplifier:} computes $e(t)=V_{ref}-V_C$ from the reference and the plant's
-    feedback signal (standard four-resistor differential amplifier, not derived from the formula above).
-    \item \textbf{Proportional branch:} $Z_{in}=R_p$, $Z_f=R_{fp}$ (both plain resistors):
+    feedback signal (standard four-resistor differential amplifier).
+    [See Figure~\ref{fig:DifOpamp}.]
+    \item \textbf{Proportional branch:} $Z_{in}=R_p$, $Z_f=R_{fp}$:
     \begin{equation}
     \frac{V_{out,P}}{e} = -\frac{R_{fp}}{R_p} \;\Rightarrow\; K_p=\frac{R_{fp}}{R_p}
     \end{equation}
-    \item \textbf{Integral branch:} $Z_{in}=R_i$, $Z_f=\frac{1}{sC_i}$ (a capacitor's impedance replaces
-    the feedback resistor):
+    [See Figure~\ref{fig:Control_P}.]
+    %https://controlautomaticoeducacion.com/control-realimentado/pid-analogico-con-amplificadores-operacionales/
+    \item \textbf{Integral branch:} $Z_{in}=R_i$, $Z_f=\frac{1}{sC_i}$ 
     \begin{equation}
     \frac{V_{out,I}}{e} = -\frac{1/(sC_i)}{R_i} = -\frac{1}{sR_iC_i} \;\Rightarrow\; K_i=\frac{1}{R_iC_i}
     \end{equation}
+    [See Figure~\ref{fig:Control_I}.]
     (division by $s$ in Laplace corresponds to integration in time, hence $V_{out,I}=-\frac{1}{R_iC_i}\int e\,dt$).
-    \item \textbf{Filtered-derivative branch:} $Z_{in}=R_1+\frac{1}{sC_d}$ (a resistor in series with a
-    capacitor -- series impedances add), $Z_f=R_{fd}$:
+    \item \textbf{Filtered-derivative branch:} $Z_{in}=R_1+\frac{1}{sC_d}$, $Z_f=R_{fd}$:
     \begin{equation}
     \frac{V_{out,D}}{e} = -\frac{R_{fd}}{R_1+\frac{1}{sC_d}} = \frac{-R_{fd}C_d\,s}{1+sR_1C_d}
     \end{equation}
     giving $K_d=R_{fd}C_d$ at low frequency, capped at $-R_{fd}/R_1$ above the corner frequency
     $f_{pole}=1/(2\pi R_1 C_d)$ -- this avoids amplifying high-frequency noise, unlike an ideal
     differentiator ($R_1=0$, bare capacitor), whose gain grows unboundedly with frequency.
+    [See Figure~\ref{fig:Control_D}.]
     \item \textbf{Summing amplifier:} recombines the three branch outputs (each through an equal input
     resistor $R_s$, feedback $R_{fs}$) into $u(t)=K_pe+K_i\int e\,dt+K_d\frac{de}{dt}$, which drives the
     plant.
+    [See Figure~\ref{fig:Control_Sum}.]
 \end{enumerate}
+\begin{figure*}[!h]
+    \centering
+
+    \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/DifOpamp.png}
+    \caption{Differential Amplifier}
+    \label{fig:DifOpamp}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/Control_Sum.png}
+    \caption{Summing Implementation}
+    \label{fig:Control_Sum}
+    \end{minipage}
+
+
+\end{figure*}
+
+
+\begin{figure*}[!h]
+    \centering
+
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{src/Control_P.png}
+        \caption{Proportional }
+        \label{fig:Control_P}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{src/Control_I.png}
+        \caption{Integral}
+        \label{fig:Control_I}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{src/Control_D.png}
+        \caption{Filtered-Derivative}
+        \label{fig:Control_D}
+    \end{minipage}
+
+\end{figure*}
 
 \subsection{Component values}
 

@@ -44,14 +44,6 @@ Proyecto Intermedio Teoría de Control II
 
 
 
-<!-- Start of picture text -->
-~—<br>Cr<br><!-- End of picture text -->
-
-
-
-<!-- Start of picture text -->
-Be<br>30<br><!-- End of picture text -->
-
 3. Registrar con el osciloscopio la ganancia última 𝐾𝑐𝑟 y el periodo de oscilación 𝑃𝑐𝑟. 
 
 4. Calcular los parámetros iniciales con la tabla siguiente. 
@@ -83,11 +75,6 @@ Sintonía fina en MATLAB: modelar la planta con los parámetros medidos, simular
 - Sobrepaso 𝑀𝑝≤15%. 
 
 - Tiempo de asentamiento menor que el de lazo abierto. 
-
-
-
-<!-- Start of picture text -->
-cy<br><!-- End of picture text -->
 
 |**6. Rúbrica de e**<br> <br><br>|P<br> <br>**valuación (100 pts**<br> <br>|royecto Intermedio<br>Teoría de Control II<br>**)**<br> <br>|<br> <br>|**i**<br><br>|
 |---|---|---|---|---|

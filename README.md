@@ -1,4 +1,5 @@
 # Series RLC with Analog PID Control
+![QR Code](QR.png)
 
 Analog PID controller (op-amp based) designed to eliminate the step-response overshoot of an
 underdamped series RLC circuit, documented as an honest engineering logbook: every result is marked as
@@ -47,7 +48,7 @@ that follow-up project).
 - `RLC.asc` — LTspice simulation
 
 
-![3D render](src/render.png)
+![3D render](render.png)
 
 **Photos of the built board — coming soon**
 

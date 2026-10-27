@@ -11,32 +11,62 @@ that follow-up project).
 - **Calculated:** L = 10.13 mH, R = 127.32 Ω, C = 100 nF (fixed) — predicted open-loop overshoot ≈52.7%
 - **Goal:** classical PID design (root locus / pole placement) to eliminate that overshoot in closed loop
 
-> ⚠️ **Work in progress.** The plant is fixed and its open-loop overshoot confirmed analytically, but the
-> PID gain selection, the op-amp compensator circuit, and the closed-loop SPICE validation are still
-> open — see the PDF's `PENDING` boxes for exactly what's outstanding.
-
-## Repository structure
+## Directory structure
+```
+├── design
+│   └── design
+│       ├── design.kicad_pcb
+│       ├── design.kicad_pro
+│       ├── design.kicad_sch
+│       ├── readme.md
+│       └── src
+│           └── logFile
+├── doc
+│   ├── generalconfig.tex
+│   ├── PY2.pdf
+│   ├── PY2.tex
+│   ├── Requirements.md
+│   ├── Requirements.pdf
+│   ├── sn-jnl.cls
+│   └── src
+├── LICENSE
+├── README.md
+├── scripts
+│   ├── bode.ipynb
+│   ├── design.ipynb
+│   └── PID.m
+└── sim
+    └── RLC.asc
 
 ```
-docs/         LaTeX document (rlc_pid.tex) + figures
-simulation/   LTspice project: schematic (.asc), results (.raw), and log
-```
 
-## Document
+- `Design.kicad_sch` / `.kicad_pcb` / `.kicad_pro` — KiCad design
+- `Design.step` — 3D model
+- `requirements.pdf` — project requirements
+- `PY2.pdf` — project report
+- `RLC.asc` — LTspice simulation
 
-The report (plant derivation, open-loop transfer function and overshoot prediction, and the outstanding
-PID design / simulation work explicitly marked pending) is in
-[`docs/rlc_pid.pdf`](docs/rlc_pid.pdf) — compiled and committed, no LaTeX install needed to read it.
 
-Source is [`docs/rlc_pid.tex`](docs/rlc_pid.tex), if you want to edit or recompile it yourself
-(`pdflatex`, or [Overleaf](https://www.overleaf.com/)).
+![3D render](src/render.png)
 
-## Simulation (LTspice)
+**Photos of the built board — coming soon**
 
-Not yet started — planned: open-loop step response (confirming the ~52.7% predicted overshoot),
-closed-loop step response with the designed PID, numeric export from the `.raw` file (no visual plot
-reading), same methodology as the LM317 and buck (LT8609) projects.
+
+## Credit
+Built as coursework with [DasReyxr](https://github.com/DasReyxr)  and [Kevin Lara](https://github.com/Gyonyu)
+
+
 
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+
+## Template
+```
+mkdir code design doc scripts sim src
+```
+
+```
+tree >> README.md
+```
